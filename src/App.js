@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchBar from './searchBar';
 import Catalog from './catalog';
 
@@ -8,18 +8,20 @@ function App() {
 
   const [productsData, setProductsData] = useState({});
 
-  useEffect(() => {
-    getProductsData();
-  }, []);
-
   const getProductsData = async (query) => {
-    const response = await fetch(baseBackendUrl + query);
+    const response = await fetch(buildUrl(query));
     const jsonData = await response.json();
     setProductsData(jsonData);
   };
 
   const searchProductOnChange = (query) => {
     getProductsData(query);
+  }
+
+  const buildUrl = (query) => {
+    let sort = (query.sort !== '') ? '&sort=' + query.sort : '';
+    let filter = (query.filter !== '') ? '&filter=' + query.filter : '';
+    return baseBackendUrl + query.query + sort + filter
   }
 
 

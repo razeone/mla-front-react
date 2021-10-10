@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 
 const SearchBar = (props) => {
 
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState({
+        'query': '',
+        'sort': '',
+        'filter': ''
+    });
 
     function handleChange(e) {
-        setQuery(e.target.value);
+        setQuery({
+            ...query,
+            [e.target.name]: e.target.value
+        });
     }
 
     function handleSubmit(e) {
         e.preventDefault();
         props.searchProductOnChange(query);
-        //setQuery("");
+        console.log(query);
     }
 
     return (
@@ -23,24 +30,24 @@ const SearchBar = (props) => {
                         id="query"
                         placeholder="Search product"
                         name="query"
-                        value={query}
+                        value={query.query}
                         onChange={handleChange}
                         className="form-control"
                     />
                 </div>
                 <div className="col-md-4 mb-3">
-                    <select className="custom-select">
-                        <option>Sort by...</option>
-                        <option>Lower price</option>
-                        <option>Higher price</option>
-                        <option>More relevant</option>
+                    <select className="custom-select" onChange={handleChange} name="sort">
+                        <option value="">Sort by...</option>
+                        <option value="price_asc">Lower price</option>
+                        <option value="price_desc">Higher price</option>
                     </select>
                 </div>
-                <div className="col-md-4 mb-3">
-                    <select className="custom-select">
-                        <option>Filter by...</option>
-                        <option>New</option>
-                        <option>Other</option>
+                <div className="col-md-4 mb-3" >
+                    <select className="custom-select" onChange={handleChange} name="filter">
+                        <option value="">Filter by...</option>
+                        <option value="2230284">New</option>
+                        <option value="2230581">Used</option>
+                        <option value="2230582">Refurbish</option>
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary my-1">Search</button>
