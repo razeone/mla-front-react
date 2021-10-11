@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import SearchBar from './searchBar';
-import Catalog from './catalog';
+import SearchBar from './components/searchBar';
+import Catalog from './components/catalog';
 
 const baseBackendUrl = "http://localhost:3001/api/search?query=";
 
 function App() {
 
-  const [productsData, setProductsData] = useState({});
+  const [productsData, setProductsData] = useState([]);
 
   const getProductsData = async (query) => {
     const response = await fetch(buildUrl(query));

@@ -18,7 +18,6 @@ const SearchBar = (props) => {
     function handleSubmit(e) {
         e.preventDefault();
         props.searchProductOnChange(query);
-        console.log(query);
     }
 
     return (
@@ -33,6 +32,7 @@ const SearchBar = (props) => {
                         value={query.query}
                         onChange={handleChange}
                         className="form-control"
+                        required
                     />
                 </div>
                 <div className="col-md-4 mb-3">
@@ -47,7 +47,6 @@ const SearchBar = (props) => {
                         <option value="">Filter by...</option>
                         <option value="2230284">New</option>
                         <option value="2230581">Used</option>
-                        <option value="2230582">Refurbish</option>
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary my-1">Search</button>
