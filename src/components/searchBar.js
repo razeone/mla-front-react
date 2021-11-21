@@ -49,7 +49,7 @@ const SearchBar = (props) => {
                         <option value="2230581">Used</option>
                     </select>
                 </div>
-                <button type="submit" className="btn btn-primary my-1">Search</button>
+                <button type="submit" className="btn btn-primary my-1 btn-lg btn-block">Search</button>
             </div>
         </form>
     )
